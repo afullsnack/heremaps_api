@@ -120,40 +120,38 @@ function Home() {
   //   }
   // }, [mapRef]);
 
-  useEffect(
-    () => {
-      const here = {
-        apiKey: "lGKTZBcbuYZSIFESrHSNqgvaJkMfobEPSafo_3ACcDo",
-      };
-      const style = "normal.day";
-      var mymap = L.map(mapRef.current).setView(
-        [7.5139517536387, 10.515956857701],
-        13
-      );
-      L.tileLayer(
-        `https://2.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/${style}/{z}/{x}/{y}/512/png8?apiKey=${here.apiKey}&ppi=320`,
-        {
-          attribution:
-            'Map data &copy; <a href="https://www.here.com/">heremaps</a>',
-          // maxZoom: 18,
-          zoom: 11,
-          // id: "satellite.day",
-          // tileSize: 512,
-          // zoomOffset: -1,
-          // accessToken: "lGKTZBcbuYZSIFESrHSNqgvaJkMfobEPSafo_3ACcDo",
-        }
-      ).addTo(mymap);
-      var polygon = L.polygon([
-        [7.5139517536387, 10.515956857701],
-        [7.5140801414507, 10.515921628155],
-        [7.5140617264628, 10.515857799994],
-        [7.5139342039181, 10.515891686421],
-        [7.5139517536387, 10.515956857701],
-      ]).addTo(mymap);
-      polygon.bindPopup("I am a polygon.");
-    },
-    { mapRef }
-  );
+  useEffect(() => {
+    const here = {
+      apiKey: "lGKTZBcbuYZSIFESrHSNqgvaJkMfobEPSafo_3ACcDo",
+    };
+    const style = "normal.day";
+    var mymap = L.map("mapid").setView([7.5139517536387, 10.515956857701], 15);
+    L.tileLayer(
+      `https://2.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/${style}/{z}/{x}/{y}/512/png8?apiKey=${here.apiKey}&ppi=320`,
+      {
+        attribution:
+          'Map data &copy; <a href="https://www.here.com/">heremaps</a>',
+        // maxZoom: 18,
+        zoom: 15,
+        // id: "satellite.day",
+        tileSize: 256,
+        // zoomOffset: -1,
+        // accessToken: "lGKTZBcbuYZSIFESrHSNqgvaJkMfobEPSafo_3ACcDo",
+      }
+    ).addTo(mymap);
+    var polygon = L.polygon([
+      [7.5139517536387, 10.515956857701],
+      [7.5140801414507, 10.515921628155],
+      [7.5140617264628, 10.515857799994],
+      [7.5139342039181, 10.515891686421],
+      [7.5139517536387, 10.515956857701],
+    ]).addTo(mymap);
+    polygon.bindPopup("I am a polygon.");
+
+    return () => {
+      map.remove();
+    };
+  }, [mapRef]);
 
   return (
     <div className={styles.container}>
@@ -203,7 +201,7 @@ function Home() {
         {/* <script src="../iframeheight.js"></script> */}
       </Head>
 
-      <div ref={mapRef} style={{ height: "100%", width: "100%" }} />
+      <div ref={mapRef} id="mapid" style={{ height: "100%", width: "100%" }} />
     </div>
   );
 }
