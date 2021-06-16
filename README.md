@@ -10,6 +10,21 @@ npm run dev
 yarn dev
 ```
 
+# Integrating Here Maps API
+
+This is my repo, trying out the Here maps API to render a map with geometric shapes and trying out more advance features feel free to clone or fork the repo to make use of it in your project.
+
+### initialize the map after setting the <link> and <script> tags in the HTML file
+
+```js
+const map = await L.map("map", {
+  center: [7.5139517536387, 10.515956857701],
+  zoom: 15,
+  layers: [nightLayer, dayLayer],
+});
+map.attributionControl.addAttribution("&copy; HERE 2021");
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
