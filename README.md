@@ -14,7 +14,7 @@ yarn dev
 
 This is my repo, trying out the Here maps API to render a map with geometric shapes and trying out more advance features feel free to clone or fork the repo to make use of it in your project.
 
-### initialize the map after setting the <link> and <script> tags in the HTML file
+### initialize the map after setting the `<link>` and `<script>` tags in the HTML file
 
 ```js
 const map = await L.map("map", {
