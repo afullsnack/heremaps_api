@@ -85,7 +85,7 @@ function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Map at a specified location</title>
+        <title>Sytemap - Real Estate</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"

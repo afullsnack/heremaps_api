@@ -74,8 +74,8 @@ export default function withLayout(PageComp) {
         </Header> */}
         <Layout
           style={{
-            height: "calc(100vh - 64px)",
-            // overflow: "hidden",
+            height: "100vh",
+            overflow: "hidden",
             padding: 0,
           }}
         >
@@ -84,7 +84,11 @@ export default function withLayout(PageComp) {
           </Content>
           <Sider
             width={550}
-            style={{ backgroundColor: primaryColor, padding: 20 }}
+            style={{
+              backgroundColor: primaryColor,
+              padding: 20,
+              overflow: "scroll",
+            }}
           >
             {/* <Menu
               theme="dark"
@@ -101,11 +105,11 @@ export default function withLayout(PageComp) {
               prefix={<SearchOutlined />}
               suffix={
                 <Button
-                  icon={<FilterOutlined />}
+                  // icon={<FilterOutlined />}
                   style={{ borderRadius: 100 }}
                   type="primary"
                 >
-                  Filter
+                  SEARCH
                 </Button>
               }
             />
@@ -139,16 +143,22 @@ export default function withLayout(PageComp) {
               </Col>
             </Row>
 
-            <Row>
+            <Row
+              style={{
+                width: "100%",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
               <Col span={24}>
                 <h4>
                   Estates <span style={{ color: textSecondaryColor }}>50</span>
                 </h4>
               </Col>
-              <Col span={24}>
-                {Array.of(7).map((c, i) => {
-                  return <EstateItemList />;
-                })}
+              <Col span={24} style={{}}>
+                {Array.from(Array(7), (_, i) => (
+                  <EstateItemList key={i} />
+                ))}
               </Col>
             </Row>
 

@@ -14,7 +14,12 @@ import {
 const EstateItemList = () => (
   <Card
     hoverable
-    style={{ borderRadius: 30, width: "100%", backgroundColor: secondaryColor }}
+    style={{
+      borderRadius: 30,
+      width: "100%",
+      backgroundColor: secondaryColor,
+      marginBottom: 10,
+    }}
   >
     <Card.Meta
       title="Sky high estate"
@@ -31,7 +36,7 @@ const EstateItemList = () => (
         display: "flex",
         flexFlow: "row",
         alignItems: "end",
-        justifyContent: "end",
+        justifyContent: "flex-end",
       }}
     >
       <Button
