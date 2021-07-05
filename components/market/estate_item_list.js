@@ -17,6 +17,7 @@ const { Panel } = Collapse;
 const EstateItemList = ({
   changePropModalVisibility,
   changeInquiryModalVisibility,
+  changeEstateInfoModalVisibility,
 }) => {
   const [activeKey, setActiveKey] = useState(["0"]);
   return (
@@ -77,7 +78,7 @@ const EstateItemList = ({
                     color: iconColor3,
                     font: "normal normal normal 14px/25px Poppins",
                   }}
-                  onClick={(e) => window.alert("Explore Button clicked")}
+                  onClick={(e) => changeEstateInfoModalVisibility()}
                 >
                   Explore
                 </Button>

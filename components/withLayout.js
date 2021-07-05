@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { Layout, Menu, Upload, message, Button, Input, Row, Col } from "antd";
 import {
-  UploadOutlined,
-  PlusOutlined,
-  LoadingOutlined,
-  FilterOutlined,
   HomeOutlined,
   SearchOutlined,
   EnvironmentFilled,
@@ -20,6 +16,9 @@ import {
 import EstateItemList from "./market/estate_item_list";
 import PropInfoModal from "./market/prop_info_modal";
 import PropInquiryModal from "./market/prop_inquiry_modal";
+import MortgageFormModal from "./market/mortgage_form_modal";
+import EstateInfoModal from "./market/estate_info_modal";
+import MortgageFormStatusModal from "./market/mortgage_submit_status";
 
 const { Header, Sider, Content } = Layout;
 
@@ -46,6 +45,14 @@ export default function withLayout(PageComp) {
   function Page() {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isInquiryModalVisible, setIsInquiryModalVisible] = useState(false);
+    const [isMortgageFormModalVisible, setIsMortgageFormModalVisible] =
+      useState(false);
+    const [isEstateInfoModalVisible, setIsEstateInfoModalVisible] =
+      useState(false);
+    const [
+      isMortgageFormStatusModalVisible,
+      setIsMortgageFormStatusModalVisible,
+    ] = useState(false);
     // const [fileUrl, setFileUrl] = useState();
     // const handleChange = (info) => {
     //   if (info.file.status === "uploading") {
@@ -89,11 +96,42 @@ export default function withLayout(PageComp) {
               changePropModalVisibility={() =>
                 setIsModalVisible(!isModalVisible)
               }
+              changeMortgageFormModalVisibility={() =>
+                setIsMortgageFormModalVisible(!isMortgageFormModalVisible)
+              }
             />
             <PropInquiryModal
               visible={isInquiryModalVisible}
               changeInquiryModalVisibility={() =>
                 setIsInquiryModalVisible(!isInquiryModalVisible)
+              }
+            />
+            <MortgageFormModal
+              visible={isMortgageFormModalVisible}
+              changeMortgageFormModalVisibility={() =>
+                setIsMortgageFormModalVisible(!isMortgageFormModalVisible)
+              }
+              changeMortgageFormStatusModal={() =>
+                setIsMortgageFormStatusModalVisible(
+                  !isMortgageFormStatusModalVisible
+                )
+              }
+            />
+            <EstateInfoModal
+              visible={isEstateInfoModalVisible}
+              changeEstateInfoModalVisibility={() =>
+                setIsEstateInfoModalVisible(!isEstateInfoModalVisible)
+              }
+              changeInquiryModalVisibility={() =>
+                setIsInquiryModalVisible(!isInquiryModalVisible)
+              }
+            />
+            <MortgageFormStatusModal
+              visible={isMortgageFormStatusModalVisible}
+              changeMortgageFormStatusModal={() =>
+                setIsMortgageFormStatusModalVisible(
+                  !isMortgageFormStatusModalVisible
+                )
               }
             />
           </Content>
@@ -105,29 +143,25 @@ export default function withLayout(PageComp) {
               overflow: "scroll",
             }}
           >
-            {/* <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              // style={{ height: "100%" }}
-            >
-              <Menu.Item key="1">List Item</Menu.Item>
-              <Menu.Item key="2">List Item</Menu.Item>
-              <Menu.Item key="3">List Item</Menu.Item>
-            </Menu> */}
-            <Input
-              style={{ borderRadius: 100 }}
-              prefix={<SearchOutlined />}
-              suffix={
+            <Row gutter={8} style={{ width: "100%", padding: 10 }}>
+              <Col span={18}>
+                <Input
+                  style={{ borderRadius: 100 }}
+                  prefix={<SearchOutlined />}
+                  size="large"
+                  placeholder="Search for estates"
+                />
+              </Col>
+              <Col span={6}>
                 <Button
-                  // icon={<FilterOutlined />}
+                  size="large"
                   style={{ borderRadius: 100 }}
                   type="primary"
                 >
                   SEARCH
                 </Button>
-              }
-            />
+              </Col>
+            </Row>
 
             <br />
             <br />
@@ -166,7 +200,7 @@ export default function withLayout(PageComp) {
               }}
             >
               <Col span={24}>
-                <h4>
+                <h4 style={{ marginLeft: 20 }}>
                   Estates <span style={{ color: textSecondaryColor }}>50</span>
                 </h4>
               </Col>
@@ -177,6 +211,9 @@ export default function withLayout(PageComp) {
                   }
                   changeInquiryModalVisibility={() =>
                     setIsInquiryModalVisible(!isInquiryModalVisible)
+                  }
+                  changeEstateInfoModalVisibility={() =>
+                    setIsEstateInfoModalVisible(!isEstateInfoModalVisible)
                   }
                 />
               </Col>

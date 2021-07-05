@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { Modal, Row, Col, Tag, Space, Button } from "antd";
-import { PlayCircleFilled, EnvironmentFilled } from "@ant-design/icons";
+import { EnvironmentFilled } from "@ant-design/icons";
 import Image from "next/image";
+import { CarIcon, BedIcon, BathIcon } from "./icons";
+import { CustomGhostButton, CustomPrimaryButton } from "../../lib/helpers";
 
-const PropInfoModal = ({ visible, changePropModalVisibility }) => {
+const PropInfoModal = ({
+  visible,
+  changePropModalVisibility,
+  changeMortgageFormModalVisibility,
+}) => {
   return (
     <Modal
       title="Property info"
@@ -52,16 +58,34 @@ const PropInfoModal = ({ visible, changePropModalVisibility }) => {
             </Col>
             <Col span={24}>
               <Space direction="horizontal" align="center" size="large">
-                <div>
-                  <PlayCircleFilled style={{ marginRight: 5 }} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <BedIcon style={{ marginRight: 5 }} />
                   <span>8 Bedrooms</span>
                 </div>
-                <div>
-                  <PlayCircleFilled style={{ marginRight: 5 }} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <BathIcon style={{ marginRight: 5 }} />
                   <span>2 Baths</span>
                 </div>
-                <div>
-                  <PlayCircleFilled style={{ marginRight: 5 }} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <CarIcon style={{ marginRight: 5 }} />
                   <span>9 Car Park</span>
                 </div>
               </Space>
@@ -117,30 +141,16 @@ const PropInfoModal = ({ visible, changePropModalVisibility }) => {
             <Image src="/profile_pic2.jpeg" width={200} height={200} />
             <Image src="/profile_pic2.jpeg" width={200} height={200} />
           </div>
-          <Space size="large" direction="horizontal" align="center">
-            <Button
-              type="link"
-              size="middle"
-              style={{
-                color: "#FFF",
-                backgroundColor: "#41085B",
-                borderRadius: 18,
-              }}
-            >
-              Validate
-            </Button>
-            <Button
-              type="link"
-              size="middle"
-              style={{
-                color: "#41085B",
-                backgroundColor: "#FFF",
-                border: "1px solid #41085B",
-                borderRadius: 18,
+          <Space size="small" direction="horizontal" align="center">
+            <CustomPrimaryButton>Validate</CustomPrimaryButton>
+            <CustomGhostButton
+              clickHandler={() => {
+                changePropModalVisibility();
+                changeMortgageFormModalVisibility();
               }}
             >
               Apply For Mortgage
-            </Button>
+            </CustomGhostButton>
           </Space>
         </Col>
       </Row>
