@@ -18,6 +18,8 @@ import {
   textSecondaryColor,
 } from "../lib/helpers";
 import EstateItemList from "./market/estate_item_list";
+import PropInfoModal from "./market/prop_info_modal";
+import PropInquiryModal from "./market/prop_inquiry_modal";
 
 const { Header, Sider, Content } = Layout;
 
@@ -42,7 +44,8 @@ function beforeUpload(file) {
 
 export default function withLayout(PageComp) {
   function Page() {
-    // const [loading, setLoading] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isInquiryModalVisible, setIsInquiryModalVisible] = useState(false);
     // const [fileUrl, setFileUrl] = useState();
     // const handleChange = (info) => {
     //   if (info.file.status === "uploading") {
@@ -81,6 +84,18 @@ export default function withLayout(PageComp) {
         >
           <Content style={{ padding: 20, height: "100%" }}>
             <PageComp />
+            <PropInfoModal
+              visible={isModalVisible}
+              changePropModalVisibility={() =>
+                setIsModalVisible(!isModalVisible)
+              }
+            />
+            <PropInquiryModal
+              visible={isInquiryModalVisible}
+              changeInquiryModalVisibility={() =>
+                setIsInquiryModalVisible(!isInquiryModalVisible)
+              }
+            />
           </Content>
           <Sider
             width={550}
@@ -156,9 +171,14 @@ export default function withLayout(PageComp) {
                 </h4>
               </Col>
               <Col span={24} style={{}}>
-                {Array.from(Array(7), (_, i) => (
-                  <EstateItemList key={i} />
-                ))}
+                <EstateItemList
+                  changePropModalVisibility={() =>
+                    setIsModalVisible(!isModalVisible)
+                  }
+                  changeInquiryModalVisibility={() =>
+                    setIsInquiryModalVisible(!isInquiryModalVisible)
+                  }
+                />
               </Col>
             </Row>
 
