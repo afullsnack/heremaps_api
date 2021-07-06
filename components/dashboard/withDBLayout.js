@@ -7,13 +7,21 @@ import {
   UserIcon,
   SupportIcon,
 } from "./dbIcons";
+import DashHeader from "./header";
 
 const { Header, Content, Sider, Footer } = Layout;
 
 export default function withDBLayout(PageComp) {
   function Page() {
     return (
-      <Layout style={{ minHeight: "100vh", padding: 10, overflow: "hidden" }}>
+      <Layout
+        style={{
+          minHeight: "100vh",
+          padding: 10,
+          overflow: "hidden",
+          backgroundColor: "white",
+        }}
+      >
         <Sider
           width={100}
           style={{
@@ -29,6 +37,8 @@ export default function withDBLayout(PageComp) {
               backgroundColor: "transparent",
               textAlign: "right",
             }}
+            defaultSelectedKeys={["1"]}
+            // selectedKeys={["1"]}
           >
             <Menu.Item key="1" style={{ textAlign: "center" }}>
               <DashboardIcon />
@@ -50,8 +60,17 @@ export default function withDBLayout(PageComp) {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout style={{ height: "100%", overflow: "hidden", padding: 0 }}>
-          <Header></Header>
+        <Layout
+          style={{
+            height: "100%",
+            overflow: "hidden",
+            padding: 0,
+            backgroundColor: "transparent",
+          }}
+        >
+          <Header style={{ backgroundColor: "transparent", padding: "0 20px" }}>
+            <DashHeader />
+          </Header>
           <Content style={{ padding: 20, height: "calc(100% - 64px)" }}>
             <PageComp />
           </Content>
@@ -71,11 +90,13 @@ export default function withDBLayout(PageComp) {
           }
 
           .logo {
-            background-image: url("/new-propvat-logo-white.svg");
-            background-size: cover;
+            background-image: url("/dashboard/new-propvat-logo-white@2x.png");
+            background-size: contain;
             background-position: center;
-            width: 100%;
-            height: 40px;
+            background-repeat: no-repeat;
+            width: 75px;
+            height: 45px;
+            margin: 10px auto 50px auto;
           }
         `}</style>
       </Layout>

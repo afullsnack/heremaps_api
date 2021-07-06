@@ -1,4 +1,8 @@
 import Icon from "@ant-design/icons";
+import dashCardEstate from "../../public/dashboard/dash_estate.svg";
+import dashCardInquiry from "../../public/dashboard/dash_inquiries.svg";
+import dashCardProps from "../../public/dashboard/dash_props.svg";
+import dashCardService from "../../public/dashboard/dash_service.svg";
 
 const dashboardSVG = () => (
   <svg
@@ -145,3 +149,17 @@ export const UserIcon = (props) => <Icon component={userSVG} {...props} />;
 export const SupportIcon = (props) => (
   <Icon component={supportSVG} {...props} />
 );
+export const CardEstateIcon = (props) => (
+  <Icon component={dashCardEstate} {...props} />
+);
+export const CardInquiryIcon = (props) => (
+  <Icon component={dashCardInquiry} {...props} />
+);
+export const CardPropsIcon = (props) => (
+  <Icon component={dashCardProps} {...props} />
+);
+export const CardServiceIcon = (props) => (
+  <Icon component={dashCardService} {...props} />
+);
+
+// export const LogoIcon = (props) => <Icon component={logoSVG} {...props} />;
