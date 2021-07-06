@@ -22,6 +22,7 @@ export default function withDBLayout(PageComp) {
             backgroundColor: "#41085B",
           }}
         >
+          <div className="logo"></div>
           <Menu
             style={{
               height: "100%",
@@ -67,6 +68,14 @@ export default function withDBLayout(PageComp) {
           .ant-menu-item a,
           .ant-menu-item a:hover {
             color: white;
+          }
+
+          .logo {
+            background-image: url("/new-propvat-logo-white.svg");
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: auto;
           }
         `}</style>
       </Layout>
