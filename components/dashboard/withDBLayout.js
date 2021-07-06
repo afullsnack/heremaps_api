@@ -75,7 +75,7 @@ export default function withDBLayout(PageComp) {
             background-size: cover;
             background-position: center;
             width: 100%;
-            height: auto;
+            height: 40px;
           }
         `}</style>
       </Layout>
