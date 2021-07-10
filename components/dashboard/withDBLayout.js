@@ -8,15 +8,20 @@ import {
   SupportIcon,
 } from "./dbIcons";
 import DashHeader from "./header";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 const { Header, Content, Sider, Footer } = Layout;
 
 export default function withDBLayout(PageComp) {
   function Page() {
+    const router = useRouter();
+    const [page, setPage] = useState(router.asPath.substring(10));
     return (
       <Layout
         style={{
           minHeight: "100vh",
+          height: "100vh",
           padding: 10,
           overflow: "hidden",
           backgroundColor: "white",
@@ -25,37 +30,54 @@ export default function withDBLayout(PageComp) {
         <Sider
           width={100}
           style={{
-            borderRadius: 21,
-            overflow: "clip",
+            // height: "inherit",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 25,
+            padding: 0,
+            overflow: "hidden",
             backgroundColor: "#41085B",
           }}
         >
           <div className="logo"></div>
           <Menu
             style={{
-              height: "100%",
+              // height: "100%",
+              width: "100%",
+              display: "flex",
+              flexFlow: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 0,
               backgroundColor: "transparent",
-              textAlign: "right",
+              // textAlign: "right",
+              border: 0,
             }}
-            defaultSelectedKeys={["1"]}
+            defaultSelectedKeys={[page]}
+            onClick={({ item, key, keyPath, event }) => {
+              // console.log({ item, key, keyPath, event });
+              setPage(router.asPath.substring(10));
+              router.push(`/developer${key}`);
+            }}
             // selectedKeys={["1"]}
           >
-            <Menu.Item key="1" style={{ textAlign: "center" }}>
+            <Menu.Item key="/dashboard" style={{ textAlign: "center" }}>
               <DashboardIcon />
             </Menu.Item>
-            <Menu.Item key="2" style={{ textAlign: "center" }}>
+            <Menu.Item key="/properties" style={{ textAlign: "center" }}>
               <MapIcon />
             </Menu.Item>
-            <Menu.Item key="3" style={{ textAlign: "center" }}>
+            <Menu.Item key="/inquiry" style={{ textAlign: "center" }}>
               <FaqIcon />
             </Menu.Item>
-            <Menu.Item key="4" style={{ textAlign: "center" }}>
+            <Menu.Item key="/staff" style={{ textAlign: "center" }}>
               <UserAddIcon />
             </Menu.Item>
-            <Menu.Item key="5" style={{ textAlign: "center" }}>
+            <Menu.Item key="/settings" style={{ textAlign: "center" }}>
               <UserIcon />
             </Menu.Item>
-            <Menu.Item key="6" style={{ textAlign: "center" }}>
+            <Menu.Item key="/support" style={{ textAlign: "center" }}>
               <SupportIcon />
             </Menu.Item>
           </Menu>
@@ -66,12 +88,24 @@ export default function withDBLayout(PageComp) {
             overflow: "hidden",
             padding: 0,
             backgroundColor: "transparent",
+            position: "relative",
           }}
         >
-          <Header style={{ backgroundColor: "transparent", padding: "0 20px" }}>
+          <Header
+            style={{
+              backgroundColor: "transparent",
+              padding: "0 20px",
+            }}
+          >
             <DashHeader />
           </Header>
-          <Content style={{ padding: 20, height: "calc(100% - 64px)" }}>
+          <Content
+            style={{
+              padding: 20,
+              height: "calc(100% - 64px)",
+              overflow: "hidden",
+            }}
+          >
             <PageComp />
           </Content>
         </Layout>
@@ -79,14 +113,21 @@ export default function withDBLayout(PageComp) {
           .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
             background-color: #fff;
             color: #41085b;
+            // width: 100%;
           }
           .ant-menu-item-active {
             color: white;
+          }
+          .ant-menu-item {
+            width: 100%;
           }
           .ant-menu-item,
           .ant-menu-item a,
           .ant-menu-item a:hover {
             color: white;
+          }
+          .ant-layout-sider-children {
+            width: 100%;
           }
 
           .logo {

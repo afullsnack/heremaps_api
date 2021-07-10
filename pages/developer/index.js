@@ -1,4 +1,4 @@
-import { Row, Col, Button } from "antd";
+import { Row, Col, Button, Card, Dropdown, Menu } from "antd";
 import DashCard from "../../components/dashboard/dashcard";
 import withDBLayout from "../../components/dashboard/withDBLayout";
 import {
@@ -7,10 +7,11 @@ import {
   CardServiceIcon,
   CardPropsIcon,
 } from "../../components/dashboard/dbIcons";
+import { ArrowDownOutlined } from "@ant-design/icons";
 
 const DashBoard = () => {
   return (
-    <Row gutter={[16, 16]} style={{ width: "100%", margin: 0 }}>
+    <Row gutter={[16, 16]} style={{ width: "100%" }}>
       <Col span={24}>
         <h1>Hello, Lucy Palmers!</h1>
         <h5>Welcome to propvat</h5>
@@ -48,6 +49,46 @@ const DashBoard = () => {
           bgColor="rgba(2, 188, 119, .17)"
           extraColor="rgba(2, 188, 119, 1)"
         />
+      </Col>
+      <Col span={12}>
+        <Card
+          title="Tasks"
+          extra={
+            <Dropdown
+              overlay={
+                <Menu>
+                  <Menu.Item>Last 14 Days</Menu.Item>
+                  <Menu.Item>Last 30 Days</Menu.Item>
+                  <Menu.Item>Last 90 Days</Menu.Item>
+                </Menu>
+              }
+            >
+              <Button>
+                Last 7 Days <ArrowDownOutlined />{" "}
+              </Button>
+            </Dropdown>
+          }
+        ></Card>
+      </Col>
+      <Col span={12}>
+        <Card
+          title="New Inquiry"
+          extra={
+            <Dropdown
+              overlay={
+                <Menu>
+                  <Menu.Item>Last 14 Days</Menu.Item>
+                  <Menu.Item>Last 30 Days</Menu.Item>
+                  <Menu.Item>Last 90 Days</Menu.Item>
+                </Menu>
+              }
+            >
+              <Button>
+                Last 7 Days <ArrowDownOutlined />{" "}
+              </Button>
+            </Dropdown>
+          }
+        ></Card>
       </Col>
     </Row>
   );
