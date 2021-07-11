@@ -14,7 +14,7 @@ import { useState } from "react";
 const { Header, Content, Sider, Footer } = Layout;
 
 export default function withDBLayout(PageComp) {
-  function Page() {
+  function Page(props) {
     const router = useRouter();
     const [page, setPage] = useState(router.asPath.substring(10));
     return (
@@ -106,7 +106,7 @@ export default function withDBLayout(PageComp) {
               overflow: "hidden",
             }}
           >
-            <PageComp />
+            <PageComp {...props} />
           </Content>
         </Layout>
         <style jsx global>{`

@@ -2,7 +2,7 @@ import { Card, Avatar, Button } from "antd";
 import { EnvironmentFilled, ArrowRightOutlined } from "@ant-design/icons";
 import Image from "next/image";
 
-const PropViewCard = ({ src, name, address }) => (
+const PropViewCard = ({ src, name, address, link }) => (
   <Card
     cover={<Image src={src} width={"100%"} height={150} />}
     bordered={false}

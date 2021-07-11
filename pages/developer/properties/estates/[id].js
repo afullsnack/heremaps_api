@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Row, Col, Button, Card, Dropdown, Menu, Breadcrumb } from "antd";
-import DashCard from "../../components/dashboard/dashcard";
-import withDBLayout from "../../components/dashboard/withDBLayout";
+import DashCard from "@components/dashboard/dashcard";
+import withDBLayout from "@components/dashboard/withDBLayout";
 import {
   CardEstateIcon,
   CardInquiryIcon,
   CardServiceIcon,
   CardPropsIcon,
-} from "../../components/dashboard/dbIcons";
+} from "@components/dashboard/dbIcons";
 import { ArrowDownOutlined, RightOutlined } from "@ant-design/icons";
-import PropViewCard from "../../components/dashboard/prop_view_card";
-import { CustomPrimaryButton, CustomGhostButton } from "../../lib/helpers";
-import UploadCSVModal from "../../components/dashboard/upload_file_modal";
+import PropViewCard from "@components/dashboard/prop_view_card";
+import { CustomPrimaryButton, CustomGhostButton } from "@lib/helpers";
+import UploadCSVModal from "@components/dashboard/upload_file_modal";
 
-const Properties = () => {
-  const [csvModalVisibility, setCSVModalVisibility] = useState(false);
+const SingleEstate = ({ id }) => {
+  // const [csvModalVisibility, setCSVModalVisibility] = useState(false);
 
   return (
     <Row gutter={[16, 16]} style={{ width: "100%", height: "100%", margin: 0 }}>
@@ -27,35 +27,8 @@ const Properties = () => {
             <Breadcrumb separator={<RightOutlined />}>
               <Breadcrumb.Item>Property</Breadcrumb.Item>
               <Breadcrumb.Item>Estate</Breadcrumb.Item>
+              <Breadcrumb.Item>{id}</Breadcrumb.Item>
             </Breadcrumb>
-          </Col>
-          <Col span={8}>
-            <PropViewCard
-              src="/dashboard/estate-img@2x.png"
-              name="Sky high estate"
-              address="Opp first marine gate, Oshogbo Lagos, Nigeria"
-            />
-          </Col>
-          <Col span={8}>
-            <PropViewCard
-              src="/dashboard/estate-img@2x.png"
-              name="Sky high estate"
-              address="Opp first marine gate, Oshogbo Lagos, Nigeria"
-            />
-          </Col>
-          <Col span={8}>
-            <PropViewCard
-              src="/dashboard/estate-img@2x.png"
-              name="Sky high estate"
-              address="Opp first marine gate, Oshogbo Lagos, Nigeria"
-            />
-          </Col>
-          <Col span={8}>
-            <PropViewCard
-              src="/dashboard/estate-img@2x.png"
-              name="Sky high estate"
-              address="Opp first marine gate, Oshogbo Lagos, Nigeria"
-            />
           </Col>
         </Row>
       </Col>
@@ -107,14 +80,22 @@ const Properties = () => {
           </Col>
         </Row>
       </Col>
-      <UploadCSVModal
+      {/* <UploadCSVModal
         visible={csvModalVisibility}
         changeUploadCSVModalVisibility={() =>
           setCSVModalVisibility(!csvModalVisibility)
         }
-      />
+      /> */}
     </Row>
   );
 };
 
-export default withDBLayout(Properties);
+export default withDBLayout(SingleEstate);
+
+export async function getServerSideProps(ctx) {
+  const { id } = ctx.params;
+  console.info(id);
+  return {
+    props: { id },
+  };
+}
