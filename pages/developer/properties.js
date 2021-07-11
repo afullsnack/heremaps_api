@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Row, Col, Button, Card, Dropdown, Menu, Breadcrumb } from "antd";
 import DashCard from "../../components/dashboard/dashcard";
 import withDBLayout from "../../components/dashboard/withDBLayout";
@@ -10,8 +11,11 @@ import {
 import { ArrowDownOutlined, RightOutlined } from "@ant-design/icons";
 import PropViewCard from "../../components/dashboard/prop_view_card";
 import { CustomPrimaryButton, CustomGhostButton } from "../../lib/helpers";
+import UploadCSVModal from "../../components/dashboard/upload_file_modal";
 
 const Properties = () => {
+  const [csvModalVisibility, setCSVModalVisibility] = useState(false);
+
   return (
     <Row gutter={[16, 16]} style={{ width: "100%", height: "100%", margin: 0 }}>
       <Col span={18} style={{ height: "100%", overflow: "scroll" }}>
@@ -86,7 +90,7 @@ const Properties = () => {
             </Button>
             <Button
               size="small"
-              onClick={() => window.alert("Add a new unit")}
+              onClick={() => setCSVModalVisibility(!csvModalVisibility)}
               style={{
                 color: "#41085B",
                 backgroundColor: "#FFF",
@@ -103,6 +107,12 @@ const Properties = () => {
           </Col>
         </Row>
       </Col>
+      <UploadCSVModal
+        visible={csvModalVisibility}
+        changeUploadCSVModalVisibility={() =>
+          setCSVModalVisibility(!csvModalVisibility)
+        }
+      />
     </Row>
   );
 };
