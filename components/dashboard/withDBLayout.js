@@ -17,6 +17,23 @@ export default function withDBLayout(PageComp) {
   function Page(props) {
     const router = useRouter();
     const [page, setPage] = useState(router.asPath.substring(10));
+    const menupaths = [
+      "/dashboard",
+      "/properties",
+      "/inquiry",
+      "/staff",
+      "/settings",
+      "/support",
+    ];
+
+    for (const path of menupaths) {
+      if (router.asPath.includes(menupaths[path])) {
+        setPage(menupaths[path]);
+      } else {
+        continue;
+      }
+    }
+
     return (
       <Layout
         style={{
@@ -55,8 +72,10 @@ export default function withDBLayout(PageComp) {
               border: 0,
             }}
             defaultSelectedKeys={[page]}
+            selectedKeys={[page]}
             onClick={({ item, key, keyPath, event }) => {
               // console.log({ item, key, keyPath, event });
+
               setPage(router.asPath.substring(10));
               router.push(`/developer${key}`);
             }}
@@ -128,6 +147,13 @@ export default function withDBLayout(PageComp) {
           }
           .ant-layout-sider-children {
             width: 100%;
+          }
+
+          .ant-modal-content {
+            border-radius: 32px;
+          }
+          .ant-modal-header {
+            border-radius: 32px;
           }
 
           .logo {

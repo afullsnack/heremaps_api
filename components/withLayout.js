@@ -233,6 +233,14 @@ export default function withLayout(PageComp) {
             </Upload> */}
           </Sider>
         </Layout>
+        <style jsx global>{`
+          .ant-modal-content {
+            border-radius: 32px;
+          }
+          .ant-modal-header {
+            border-radius: 32px;
+          }
+        `}</style>
       </Layout>
     );
   }
