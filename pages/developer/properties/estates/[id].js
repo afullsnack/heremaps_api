@@ -40,7 +40,9 @@ const SingleEstate = ({ id }) => {
             </h1>
             <Breadcrumb separator={<RightOutlined />}>
               <Breadcrumb.Item>Property</Breadcrumb.Item>
-              <Breadcrumb.Item>Estate</Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <a href="../">Estate</a>
+              </Breadcrumb.Item>
               <Breadcrumb.Item>{id}</Breadcrumb.Item>
             </Breadcrumb>
             <Space direction="horizontal" size="middle">

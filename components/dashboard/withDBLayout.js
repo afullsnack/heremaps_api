@@ -9,7 +9,7 @@ import {
 } from "./dbIcons";
 import DashHeader from "./header";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const { Header, Content, Sider, Footer } = Layout;
 
@@ -17,7 +17,7 @@ export default function withDBLayout(PageComp) {
   function Page(props) {
     const router = useRouter();
     const [page, setPage] = useState(router.asPath.substring(10));
-    const menupaths = [
+    const mainPaths = [
       "/dashboard",
       "/properties",
       "/inquiry",
@@ -26,13 +26,19 @@ export default function withDBLayout(PageComp) {
       "/support",
     ];
 
-    for (const path of menupaths) {
-      if (router.asPath.includes(menupaths[path])) {
-        setPage(menupaths[path]);
-      } else {
-        continue;
+    useEffect(() => {
+      for (let i = 0; i < mainPaths.length; i++) {
+        if (router.pathname.includes(mainPaths[i], 9)) {
+          console.log("This should trigger", mainPaths[i]);
+          setPage(mainPaths[i]);
+          break;
+        } else {
+          console.log("This is the else");
+          continue;
+        }
       }
-    }
+      return () => setPage("/dashboard");
+    }, [page]);
 
     return (
       <Layout

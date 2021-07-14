@@ -88,7 +88,7 @@ const Properties = () => {
             >
               Add new estate
             </Button>
-            <Button
+            {/* <Button
               size="small"
               onClick={() => setCSVModalVisibility(!csvModalVisibility)}
               style={{
@@ -103,7 +103,7 @@ const Properties = () => {
               }}
             >
               Upload units
-            </Button>
+            </Button> */}
           </Col>
         </Row>
       </Col>
