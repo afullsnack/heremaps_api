@@ -1,4 +1,4 @@
-import { Table, Button } from "antd";
+import { Table, Button, Avatar } from "antd";
 
 const dataSource = [];
 
@@ -22,6 +22,12 @@ const columns = [
     title: "Client Name",
     dataIndex: "client_name",
     key: "client_name",
+    render: (text) => (
+      <Space direction="horizontal" size="small">
+        <Avatar src="/profile_pic2.jpeg" shape="circle" size="small" />
+        <span>{text}</span>
+      </Space>
+    ),
   },
   {
     title: "Date",
