@@ -16,7 +16,7 @@ const { Header, Content, Sider, Footer } = Layout;
 export default function withDBLayout(PageComp) {
   function Page(props) {
     const router = useRouter();
-    const [page, setPage] = useState(router.asPath.substring(10));
+    const [page, setPage] = useState("/dashboard");
     const mainPaths = [
       "/dashboard",
       "/properties",
@@ -99,9 +99,9 @@ export default function withDBLayout(PageComp) {
             <Menu.Item key="/staff" style={{ textAlign: "center" }}>
               <UserAddIcon />
             </Menu.Item>
-            <Menu.Item key="/settings" style={{ textAlign: "center" }}>
+            {/* <Menu.Item key="/settings" style={{ textAlign: "center" }}>
               <UserIcon />
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="/support" style={{ textAlign: "center" }}>
               <SupportIcon />
             </Menu.Item>
