@@ -1,4 +1,4 @@
-import { Table, Button, Avatar } from "antd";
+import { Table, Button, Avatar, Space } from "antd";
 
 const dataSource = [];
 
