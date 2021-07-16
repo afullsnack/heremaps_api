@@ -9,8 +9,9 @@ import {
   CardPropsIcon,
 } from "@components/dashboard/dbIcons";
 import { ArrowDownOutlined, RightOutlined } from "@ant-design/icons";
-import InquiryTable from "@components/dashboard/inquiry_table";
+// import InquiryTable from "@components/dashboard/inquiry_table";
 import DashPropInquiryModal from "@components/dashboard/dash_prop_inquiry_modal";
+import StaffTable from "../../components/dashboard/staff_table";
 
 const menu = (
   <Menu>
@@ -41,15 +42,8 @@ const Staff = () => {
               justifyContent: "flex-start",
             }}
           >
-            <Card
-              title="New Inquiry"
-              extra={
-                <Dropdown overlay={menu}>
-                  <Button>Last 7 Days</Button>
-                </Dropdown>
-              }
-            >
-              <InquiryTable
+            <Card>
+              <StaffTable
                 popInquiryModal={() =>
                   setIsDashPropInquiryModalVisible(
                     !isDashPropInquiryModalVisible

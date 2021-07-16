@@ -19,7 +19,7 @@ const columns = [
     key: "users_name",
     render: (text) => (
       <Space direction="horizontal" size="small">
-        <Avatar src="/profile_pic2.jpeg"></Avatar>
+        <Avatar src="/profile_pic2.jpeg" size="small" shape="circle"></Avatar>
         <span>{text}</span>
       </Space>
     ),
