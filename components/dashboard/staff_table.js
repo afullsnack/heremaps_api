@@ -5,8 +5,8 @@ const dataSource = [];
 for (let i = 0; i < 12; i++) {
   dataSource.push({
     key: i.toString(),
-    users_name: "35612" + i.toString(),
-    email: "Charles Nweze",
+    users_name: "Charles Nweze-" + i.toString(),
+    email: `charles_nweze-${i.toString()}@gmail.com`,
     last_seen: "19-Aug-2020",
     action: "Review",
   });
@@ -46,7 +46,7 @@ const columns = [
   },
 ];
 
-const StaffTable = ({ popStaffModal }) => (
+const StaffTable = ({ removeStaff }) => (
   <Table
     dataSource={dataSource}
     columns={columns}
@@ -57,7 +57,7 @@ const StaffTable = ({ popStaffModal }) => (
         onClick: (event) => {
           // changePropModalVisibility();
           // console.log(record, rowIndex);
-          popStaffModal();
+          removeStaff(record.email);
           console.log(record);
         }, // click row
         // onDoubleClick: event => {}, // double click row

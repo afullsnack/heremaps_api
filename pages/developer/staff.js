@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Row, Col, Button, Card, Dropdown, Menu, Breadcrumb } from "antd";
-import DashCard from "@components/dashboard/dashcard";
+// import DashCard from "@components/dashboard/dashcard";
 import withDBLayout from "@components/dashboard/withDBLayout";
 import {
   CardEstateIcon,
@@ -10,8 +10,10 @@ import {
 } from "@components/dashboard/dbIcons";
 import { ArrowDownOutlined, RightOutlined } from "@ant-design/icons";
 // import InquiryTable from "@components/dashboard/inquiry_table";
-import DashPropInquiryModal from "@components/dashboard/dash_prop_inquiry_modal";
-import StaffTable from "../../components/dashboard/staff_table";
+// import DashPropInquiryModal from "@components/dashboard/dash_prop_inquiry_modal";
+import StaffTable from "@components/dashboard/staff_table";
+import StaffAddModal from "@components/dashboard/staff_add_modal";
+import { CustomPrimaryButton } from "@lib/helpers";
 
 const menu = (
   <Menu>
@@ -22,8 +24,7 @@ const menu = (
 );
 
 const Staff = () => {
-  const [isDashPropInquiryModalVisible, setIsDashPropInquiryModalVisible] =
-    useState(false);
+  const [isStaffAddModalVisible, setIsStaffAddModalVisible] = useState(false);
   return (
     <Row gutter={[16, 16]} style={{ width: "100%", height: "100%", margin: 0 }}>
       <Col span={18} style={{ height: "100%", overflow: "scroll" }}>
@@ -44,11 +45,9 @@ const Staff = () => {
           >
             <Card>
               <StaffTable
-                popInquiryModal={() =>
-                  setIsDashPropInquiryModalVisible(
-                    !isDashPropInquiryModalVisible
-                  )
-                }
+                removeStaff={(email) => {
+                  console.warn("Removing this staff", email);
+                }}
               />
             </Card>
           </Col>
@@ -56,6 +55,15 @@ const Staff = () => {
       </Col>
       <Col span={6}>
         <Row gutter={[16, 16]}>
+          <Col span={24}>
+            <CustomPrimaryButton
+              clickHandler={() =>
+                setIsStaffAddModalVisible(!isStaffAddModalVisible)
+              }
+            >
+              Add New User
+            </CustomPrimaryButton>
+          </Col>
           <Col span={24}>
             <h4>Filter</h4>
             <span>Property type</span>
@@ -66,10 +74,10 @@ const Staff = () => {
           ></Col>
         </Row>
       </Col>
-      <DashPropInquiryModal
-        visible={isDashPropInquiryModalVisible}
-        changeDashPropInquiryModalVisibility={() =>
-          setIsDashPropInquiryModalVisible(!isDashPropInquiryModalVisible)
+      <StaffAddModal
+        visible={isStaffAddModalVisible}
+        changeStaffAddModalVisibility={() =>
+          setIsStaffAddModalVisible(!isStaffAddModalVisible)
         }
       />
     </Row>
